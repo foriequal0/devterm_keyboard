@@ -1,0 +1,6 @@
+{
+  "cpu": {
+    "fqbn": "Arduino_STM32:STM32F1:genericSTM32F103R",
+    "port": ""
+  }
+}
