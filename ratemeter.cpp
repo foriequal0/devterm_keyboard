@@ -24,6 +24,10 @@ void RateMeter::tick(millis_t delta) {
   cutoff.updateTime(delta);
 }
 
+void RateMeter::expire() {
+  cutoff.expire();
+}
+
 uint16_t RateMeter::delta() const {
   return averageDelta;
 }

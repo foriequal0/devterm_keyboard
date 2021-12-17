@@ -21,6 +21,7 @@ enum Axis: uint8_t {
   AXIS_NUM,
 };
 
+static TrackballMode lastMode;
 static int8_t distances[AXIS_NUM];
 static RateMeter rateMeter[AXIS_NUM];
 static Glider glider[AXIS_NUM];
@@ -71,10 +72,19 @@ void setupTrackball() {
 void tickTrackball(millis_t delta, Device& device, State& state) {
   int8_t x = 0, y = 0, w = 0;
   noInterrupts();
-  rateMeter[AXIS_X].tick(delta);
-  rateMeter[AXIS_Y].tick(delta);
   const auto mode = state.moveTrackball();
-  switch(mode){
+  if (lastMode != mode) {
+    rateMeter[AXIS_X].expire();
+    rateMeter[AXIS_Y].expire();
+    wheelBuffer = 0;
+  }
+  else {
+    rateMeter[AXIS_X].tick(delta);
+    rateMeter[AXIS_Y].tick(delta);
+  }
+  lastMode = mode;
+
+  switch (mode) {
     case TrackballMode::Mouse: {
       const auto rX = glider[AXIS_X].glide(delta);
       const auto rY = glider[AXIS_Y].glide(delta);
