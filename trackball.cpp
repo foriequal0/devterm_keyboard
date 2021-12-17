@@ -49,11 +49,11 @@ static void interrupt() {
   const auto vy = ry * ratio;
 
   if (AXIS == AXIS_X) {
-    glider[AXIS_X].update(vx, rateMeter[AXIS_X].delta());
+    glider[AXIS_X].update(vx, std::sqrt(rateMeter[AXIS_X].delta()));
     glider[AXIS_Y].updateSpeed(vy);
   } else {
     glider[AXIS_X].updateSpeed(vx);
-    glider[AXIS_Y].update(vy, rateMeter[AXIS_Y].delta());
+    glider[AXIS_Y].update(vy, std::sqrt(rateMeter[AXIS_Y].delta()));
   }
 }
 
