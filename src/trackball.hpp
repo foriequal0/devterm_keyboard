@@ -7,6 +7,6 @@
 #include "state.hpp"
 
 void setupTrackball();
-void tickTrackball(millis_t delta, Device& device, State& state);
+void tickTrackball(millis_t delta, Device &device, State &state);
 
 #endif

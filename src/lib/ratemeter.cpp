@@ -4,9 +4,7 @@
 
 #include "math.hpp"
 
-RateMeter::RateMeter()
-: lastTime(0)
-{}
+RateMeter::RateMeter() : lastTime(0) {}
 
 void RateMeter::onInterrupt(uint32_t now) {
   if (cutoff.get()) {
@@ -26,13 +24,9 @@ void RateMeter::tick(millis_t delta) {
   }
 }
 
-void RateMeter::expire() {
-  cutoff.expire();
-}
+void RateMeter::expire() { cutoff.expire(); }
 
-uint16_t RateMeter::delta() const {
-  return averageDelta;
-}
+uint16_t RateMeter::delta() const { return averageDelta; }
 
 float RateMeter::rate() const {
   if (cutoff.get()) {

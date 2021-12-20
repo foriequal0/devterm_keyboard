@@ -6,31 +6,31 @@
 #include <USBComposite.h>
 
 class Device {
-  public:
-    USBCompositeSerial serial;
+public:
+  USBCompositeSerial serial;
 
-    Device();
+  Device();
 
-    void registerComponents();
+  void registerComponents();
 
-    void setKey(uint8_t key, bool value);
+  void setKey(uint8_t key, bool value);
 
-    void moveMouse(int8_t x, int8_t y, int8_t w);
-    void setMouseButton(uint8_t button, bool value);
-    void clickMouseButton(uint8_t buton);
+  void moveMouse(int8_t x, int8_t y, int8_t w);
+  void setMouseButton(uint8_t button, bool value);
+  void clickMouseButton(uint8_t buton);
 
-    void setJoystickButton(uint8_t button, bool value);
-    void setJoystickX(uint16_t value);
-    void setJoystickY(uint16_t value);
+  void setJoystickButton(uint8_t button, bool value);
+  void setJoystickX(uint16_t value);
+  void setJoystickY(uint16_t value);
 
-    void setConsumerButton(uint8_t buton, bool value);
+  void setConsumerButton(uint8_t buton, bool value);
 
-  private:
-    USBHID hid;
-    HIDKeyboard keyboard;
-    HIDMouse mouse;
-    HIDJoystick joystick;
-    HIDConsumer consumer;
+private:
+  USBHID hid;
+  HIDKeyboard keyboard;
+  HIDMouse mouse;
+  HIDJoystick joystick;
+  HIDConsumer consumer;
 };
 
 #endif

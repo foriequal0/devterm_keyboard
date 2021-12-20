@@ -1,15 +1,8 @@
 #include "state.hpp"
 
-State::State()
-  : fn(false),
-    middleClick(false)
-{
-}
+State::State() : fn(false), middleClick(false) {}
 
-void State::tick(millis_t delta)
-{
-  middleClickTimeout.updateTime(delta);
-}
+void State::tick(millis_t delta) { middleClickTimeout.updateTime(delta); }
 
 void State::pressMiddleClick() {
   middleClick = true;

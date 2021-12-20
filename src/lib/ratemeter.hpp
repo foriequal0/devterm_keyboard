@@ -31,7 +31,8 @@ private:
   uint32_t averageDelta;
 
   static const uint16_t CUTOFF_MS = 1000;
-  // Cut off after some seconds to prevent multiple timestamp overflow (~70 mins)
+  // Cut off after some seconds to prevent multiple timestamp overflow
+  // (~70 mins)
   Timeout<uint16_t, CUTOFF_MS> cutoff;
 };
 

@@ -1,13 +1,13 @@
 #include "trackball.hpp"
 
-#include <cstdint>
-#include <cmath>
-#include <limits>
 #include <array>
+#include <cmath>
+#include <cstdint>
+#include <limits>
 
-#include "lib/ratemeter.hpp"
 #include "lib/glider.hpp"
 #include "lib/math.hpp"
+#include "lib/ratemeter.hpp"
 
 #include <Arduino.h>
 
@@ -16,7 +16,7 @@
 #define RIGHT PC10
 #define DOWN PC11
 
-enum Axis: uint8_t {
+enum Axis : uint8_t {
   AXIS_X,
   AXIS_Y,
   AXIS_NUM,
@@ -34,8 +34,7 @@ static float rateToVelocityCurve(float input) {
   return std::pow(abs(input) / 50, 1.5);
 }
 
-template<Axis AXIS, int8_t Direction>
-static void interrupt() {
+template <Axis AXIS, int8_t Direction> static void interrupt() {
   const auto now = millis();
 
   distances[AXIS] += Direction;
@@ -72,7 +71,7 @@ void setupTrackball() {
   attachInterrupt(DOWN, &interrupt<AXIS_Y, 1>, ExtIntTriggerMode::CHANGE);
 }
 
-void tickTrackball(millis_t delta, Device& device, State& state) {
+void tickTrackball(millis_t delta, Device &device, State &state) {
   int8_t x = 0, y = 0, w = 0;
   noInterrupts();
   const auto mode = state.moveTrackball();
@@ -80,34 +79,33 @@ void tickTrackball(millis_t delta, Device& device, State& state) {
     rateMeter[AXIS_X].expire();
     rateMeter[AXIS_Y].expire();
     wheelBuffer = 0;
-  }
-  else {
+  } else {
     rateMeter[AXIS_X].tick(delta);
     rateMeter[AXIS_Y].tick(delta);
   }
   lastMode = mode;
 
   switch (mode) {
-    case TrackballMode::Mouse: {
-      const auto rX = glider[AXIS_X].glide(delta);
-      const auto rY = glider[AXIS_Y].glide(delta);
-      x = rX.value;
-      y = rY.value;
-      if (rX.stopped) {
-        glider[AXIS_Y].stop();
-      }
-      if (rY.stopped) {
-        glider[AXIS_Y].stop();
-      }
+  case TrackballMode::Mouse: {
+    const auto rX = glider[AXIS_X].glide(delta);
+    const auto rY = glider[AXIS_Y].glide(delta);
+    x = rX.value;
+    y = rY.value;
+    if (rX.stopped) {
+      glider[AXIS_Y].stop();
+    }
+    if (rY.stopped) {
+      glider[AXIS_Y].stop();
+    }
 
-      break;
-    }
-    case TrackballMode::Wheel: {
-      wheelBuffer += distances[AXIS_Y];
-      w = wheelBuffer / WHEEL_DENOM;
-      wheelBuffer -= w * WHEEL_DENOM;
-      break;
-    }
+    break;
+  }
+  case TrackballMode::Wheel: {
+    wheelBuffer += distances[AXIS_Y];
+    w = wheelBuffer / WHEEL_DENOM;
+    wheelBuffer -= w * WHEEL_DENOM;
+    break;
+  }
   }
   distances[AXIS_X] = 0;
   distances[AXIS_Y] = 0;

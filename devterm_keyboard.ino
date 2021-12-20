@@ -1,10 +1,10 @@
 #include <USBComposite.h>
 
 #include "src/device.hpp"
-#include "src/state.hpp"
 #include "src/keyboard.hpp"
-#include "src/trackball.hpp"
+#include "src/state.hpp"
 #include "src/tickwaiter.hpp"
+#include "src/trackball.hpp"
 
 static Device device;
 static State state;
@@ -16,7 +16,8 @@ void setup() {
   USBComposite.setProductString("DevTerm Keyboard");
   USBComposite.begin();
 
-  while(!USBComposite); //wait until usb port been plugged in to PC
+  while (!USBComposite)
+    ; // wait until usb port been plugged in to PC
 
   setupKeyboard();
   setupTrackball();

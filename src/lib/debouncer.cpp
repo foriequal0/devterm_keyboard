@@ -1,9 +1,6 @@
 #include "debouncer.hpp"
 
-Debouncer::Debouncer()
-  : timeout(0)
-{
-}
+Debouncer::Debouncer() : timeout(0) {}
 
 void Debouncer::updateTime(millis_t delta) {
   if (timeout > delta) {

@@ -1,11 +1,10 @@
 #ifndef KEY_HPP
 #define KEY_HPP
 
-#include <cstdint>
 #include <cstddef>
+#include <cstdint>
 
-struct MatrixKey
-{
+struct MatrixKey {
   static const uint8_t ROW_NUM = 8;
   static const uint8_t COL_NUM = 8;
 
@@ -22,21 +21,22 @@ struct SpecialKey {
 };
 
 class Key {
-  public:
-    enum class Tag { Matrix, Special };
+public:
+  enum class Tag { Matrix, Special };
 
-    Key();
-    Key(MatrixKey matrix);
-    Key(SpecialKey special);
+  Key();
+  Key(MatrixKey matrix);
+  Key(SpecialKey special);
 
-    Tag tag() const;
-    MatrixKey matrix() const;
-    SpecialKey special() const;
+  Tag tag() const;
+  MatrixKey matrix() const;
+  SpecialKey special() const;
 
-    bool operator==(Key other) const;
-    bool operator!=(Key other) const;
-  private:
-    uint8_t packed;
+  bool operator==(Key other) const;
+  bool operator!=(Key other) const;
+
+private:
+  uint8_t packed;
 };
 
 #endif

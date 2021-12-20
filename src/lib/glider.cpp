@@ -4,12 +4,7 @@
 
 #include "math.hpp"
 
-Glider::Glider()
-: speed(0),
-  sustain(0),
-  release(0),
-  error(0)
-{}
+Glider::Glider() : speed(0), sustain(0), release(0), error(0) {}
 
 void Glider::setDirection(int8_t direction) {
   if (this->direction != direction) {
@@ -24,9 +19,7 @@ void Glider::update(float speed, uint16_t sustain) {
   this->release = sustain;
 }
 
-void Glider::updateSpeed(float speed) {
-  this->speed = speed;
-}
+void Glider::updateSpeed(float speed) { this->speed = speed; }
 
 void Glider::stop() {
   this->speed = 0;
@@ -57,5 +50,5 @@ Glider::GlideResult Glider::glide(millis_t delta) {
   }
 
   const int8_t result = direction * distance;
-  return GlideResult { result, !alreadyStopped && speed == 0 };
+  return GlideResult{result, !alreadyStopped && speed == 0};
 }

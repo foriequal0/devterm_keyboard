@@ -7,6 +7,6 @@
 #include "state.hpp"
 
 void setupKeyboard();
-void tickKeyboard(millis_t tick, Device& device, State& state);
+void tickKeyboard(millis_t tick, Device &device, State &state);
 
 #endif

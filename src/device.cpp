@@ -1,10 +1,6 @@
 #include "device.hpp"
 
-Device::Device()
-  : keyboard(hid),
-    mouse(hid),
-    joystick(hid),
-    consumer(hid) {
+Device::Device() : keyboard(hid), mouse(hid), joystick(hid), consumer(hid) {
   keyboard.setAdjustForHostCapsLock(false);
 }
 
@@ -38,21 +34,15 @@ void Device::setMouseButton(uint8_t button, bool value) {
   }
 }
 
-void Device::clickMouseButton(uint8_t button) {
-  mouse.click(button);
-}
+void Device::clickMouseButton(uint8_t button) { mouse.click(button); }
 
 void Device::setJoystickButton(uint8_t button, bool value) {
   joystick.button(button, value);
 }
 
-void Device::setJoystickX(uint16_t value) {
-  joystick.X(value);
-}
+void Device::setJoystickX(uint16_t value) { joystick.X(value); }
 
-void Device::setJoystickY(uint16_t value) {
-  joystick.Y(value);
-}
+void Device::setJoystickY(uint16_t value) { joystick.Y(value); }
 
 void Device::setConsumerButton(uint8_t button, bool value) {
   if (value) {

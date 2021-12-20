@@ -1,16 +1,15 @@
 #ifndef MATH_HPP
 #define MATH_HPP
 
-#include <cstdint>
 #include <cmath>
+#include <cstdint>
 
 #include <limits>
 
 uint32_t getDelta(uint32_t prev, uint32_t now);
 uint32_t getDelta(uint32_t prev, uint32_t now, uint32_t max);
 
-template<typename T>
-T sign(T value) {
+template <typename T> T sign(T value) {
   if (value > 0) {
     return 1;
   }
@@ -20,8 +19,7 @@ T sign(T value) {
   return 0;
 }
 
-template<typename T, typename U>
-T clamp(U value) {
+template <typename T, typename U> T clamp(U value) {
   if (value >= std::numeric_limits<T>::max()) {
     return std::numeric_limits<T>::max();
   }
@@ -33,25 +31,20 @@ T clamp(U value) {
   return value;
 }
 
-template<typename T>
-T min(T x, T y) {
+template <typename T> T min(T x, T y) {
   if (x < y) {
-      return x;
+    return x;
   }
   return y;
 }
 
-template<typename T>
-T max(T x, T y) {
+template <typename T> T max(T x, T y) {
   if (x > y) {
-      return x;
+    return x;
   }
   return y;
 }
 
-template<typename T>
-T hypot(T x, T y) {
-  return std::sqrt(x * x + y * y);
-}
+template <typename T> T hypot(T x, T y) { return std::sqrt(x * x + y * y); }
 
 #endif

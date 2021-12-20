@@ -13,6 +13,7 @@ struct KeyMap {
 // - alphanumeric keys: _{code},
 // - key that has a name: use its name.
 // - other keys: {row:A, B, C, D, ...}{column: 1,2,3,...}
+/* clang-format off */
 #define LAYOUT( \
   JOYSTICK_UP, JOYSTICK_DOWN, JOYSTICK_LEFT, JOYSTICK_RIGHT, \
   JOYSTICK_Y, JOYSTICK_X, JOYSTICK_B, JOYSTICK_A, \
@@ -54,32 +55,51 @@ struct KeyMap {
     BALL, \
   }, \
 })
+/* clang-format on */
 
-static const KeyCode _ { KeyCode::Type::NoOp, 0 };
+static const KeyCode _{KeyCode::Type::NoOp, 0};
 
 static KeyCode key(uint8_t code) {
-  return { KeyCode::Type::Key, code, };
+  return {
+      KeyCode::Type::Key,
+      code,
+  };
 }
 
 static KeyCode consumer(uint8_t code) {
-  return { KeyCode::Type::Consumer, code, };
+  return {
+      KeyCode::Type::Consumer,
+      code,
+  };
 }
 
 static KeyCode custom(CustomKeyCode action) {
-  return { KeyCode::Type::Custom, (uint8_t)action, };
+  return {
+      KeyCode::Type::Custom,
+      (uint8_t)action,
+  };
 }
 
 static KeyCode joystick(uint8_t code) {
-  return { KeyCode::Type::JoystickButton, code, };
+  return {
+      KeyCode::Type::JoystickButton,
+      code,
+  };
 }
 
 static KeyCode mouse(uint8_t code) {
-  return { KeyCode::Type::MouseButton, code, };
+  return {
+      KeyCode::Type::MouseButton,
+      code,
+  };
 }
 
-static const uint8_t KEY_PRNT_SCRN = 0xCE; //Print screen - 0x88 == usb hut1_12v2.pdf keyboard code
-static const uint8_t KEY_PAUSE = 0xd0; // - 0x88 == usb hut1_12v2.pdf keyboard code
+static const uint8_t KEY_PRNT_SCRN =
+    0xCE; // Print screen - 0x88 == usb hut1_12v2.pdf keyboard code
+static const uint8_t KEY_PAUSE =
+    0xd0; // - 0x88 == usb hut1_12v2.pdf keyboard code
 
+/* clang-format off */
 static const KeyMap defaultKeyMap = 
 LAYOUT(
   custom(CustomKeyCode::JoystickUp), custom(CustomKeyCode::JoystickDown), custom(CustomKeyCode::JoystickLeft), custom(CustomKeyCode::JoystickRight),
@@ -105,8 +125,9 @@ LAYOUT(
   _, _, _, _, _, _, _, key(KEY_HOME), key(KEY_PAGE_DOWN), key(KEY_END),
   _, _, _
 );
+/* clang-format on */
 
-static KeyCode getKeyCode(const KeyMap& keymap, Key key) {
+static KeyCode getKeyCode(const KeyMap &keymap, Key key) {
   if (key.tag() == Key::Tag::Matrix) {
     const auto matrix = key.matrix();
     return keymap.matrix[matrix.row][matrix.col];
@@ -120,15 +141,15 @@ KeyCodeResult getKeyCode(Key key, bool fn) {
   if (fn) {
     const auto keyCode = getKeyCode(fnKeyMap, key);
     if (keyCode.type != KeyCode::Type::NoOp) {
-      return KeyCodeResult {
-        .keyCode = keyCode,
-        .fromFn = true,
+      return KeyCodeResult{
+          .keyCode = keyCode,
+          .fromFn = true,
       };
     }
   }
 
-  return KeyCodeResult {
-    .keyCode = getKeyCode(defaultKeyMap, key),
-    .fromFn = false,
+  return KeyCodeResult{
+      .keyCode = getKeyCode(defaultKeyMap, key),
+      .fromFn = false,
   };
 }
