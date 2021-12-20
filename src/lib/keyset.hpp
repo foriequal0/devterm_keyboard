@@ -66,7 +66,7 @@ private:
   std::bitset<Indexer::END> bits;
 };
 
-struct MatrixKeysetIndexer {
+struct MatrixKeySetIndexer {
   typedef MatrixKey key_type;
 
   static const size_t END = MatrixKey::COL_NUM * MatrixKey::ROW_NUM;
@@ -80,18 +80,20 @@ struct MatrixKeysetIndexer {
   inline static size_t toIndex(MatrixKey key) { return key.row << 3 | key.col; }
 };
 
-class MatrixKeySet : public KeySet<MatrixKeysetIndexer> {};
+class MatrixKeySet : public KeySet<MatrixKeySetIndexer> {};
 
-struct SpecialKeysetIndexer {
+struct SpecialKeySetIndexer {
   typedef SpecialKey key_type;
 
   static const size_t END = (size_t)SpecialKey::NUM;
 
-  inline static key_type fromIndex(size_t index) { return SpecialKey(index); }
+  inline static key_type fromIndex(size_t index) {
+    return SpecialKey{(uint8_t)index};
+  }
 
   inline static size_t toIndex(key_type key) { return key.value; }
 };
 
-class SpecialKeySet : public KeySet<SpecialKeysetIndexer> {};
+class SpecialKeySet : public KeySet<SpecialKeySetIndexer> {};
 
 #endif

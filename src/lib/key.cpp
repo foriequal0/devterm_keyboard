@@ -7,7 +7,15 @@ MatrixKey::MatrixKey(uint8_t row, uint8_t col) : row(row), col(col) {
   assert(col < COL_NUM);
 }
 
+bool MatrixKey::operator==(MatrixKey other) const {
+  return row == other.row && col == other.col;
+}
+
 SpecialKey::SpecialKey(uint8_t value) : value(value) { assert(value < NUM); }
+
+bool SpecialKey::operator==(SpecialKey other) const {
+  return value == other.value;
+}
 
 static const size_t TAG_OFFSET = 6;
 

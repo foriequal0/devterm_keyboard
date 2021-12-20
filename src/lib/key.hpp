@@ -9,6 +9,7 @@ struct MatrixKey {
   static const uint8_t COL_NUM = 8;
 
   MatrixKey(uint8_t row, uint8_t col);
+  bool operator==(MatrixKey other) const;
   const uint8_t row;
   const uint8_t col;
 };
@@ -16,7 +17,8 @@ struct MatrixKey {
 struct SpecialKey {
   static const size_t NUM = 17;
 
-  SpecialKey(uint8_t value);
+  explicit SpecialKey(uint8_t value);
+  bool operator==(SpecialKey other) const;
   const uint8_t value;
 };
 

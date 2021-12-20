@@ -5,16 +5,29 @@
 
 typedef uint8_t millis_t;
 
-const millis_t DEBOUNCE_MS = 5;
-
 /**
    @brief Asymmetric debouncer
 */
-class Debouncer {
+template <millis_t MS> class Debouncer {
 public:
-  Debouncer();
-  void updateTime(millis_t delta);
-  bool sample(bool value);
+  Debouncer() : timeout(0) {}
+
+  void updateTime(millis_t delta) {
+    if (timeout > delta) {
+      timeout -= delta;
+    } else {
+      timeout = 0;
+    }
+  }
+
+  bool sample(bool value) {
+    if (value || timeout == 0) {
+      timeout = MS;
+      return true;
+    }
+
+    return false;
+  }
 
 private:
   millis_t timeout;

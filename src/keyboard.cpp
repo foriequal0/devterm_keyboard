@@ -1,5 +1,6 @@
 #include "keyboard.hpp"
 
+#include "lib/debouncer.hpp"
 #include "lib/joystickstack.hpp"
 #include "lib/key.hpp"
 #include "lib/keyset.hpp"
@@ -39,7 +40,9 @@ struct KeySets {
   SpecialKeySet special;
 };
 
-static Debouncer debouncer;
+static const millis_t KEYBOARD_DEBOUNCE_MS = 5;
+
+static Debouncer<KEYBOARD_DEBOUNCE_MS> debouncer;
 static KeySets keys;
 static KeySets snapshot;
 
