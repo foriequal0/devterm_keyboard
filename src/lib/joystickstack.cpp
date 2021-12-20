@@ -43,7 +43,7 @@ uint16_t JoystickStack::b(bool pressed) {
   if (pressed) {
     assert(stack == IDLE || stack == A);
     stack = stack << 2 | B;
-    return value(A);
+    return value(B);
   } else {
     switch (stack) {
     case AB:
