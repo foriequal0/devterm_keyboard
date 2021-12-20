@@ -1,6 +1,7 @@
+#include "glider.hpp"
+
 #include <cmath>
 
-#include "glider.hpp"
 #include "math.hpp"
 
 Glider::Glider()

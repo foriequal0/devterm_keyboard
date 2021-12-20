@@ -1,14 +1,15 @@
-#include <Arduino.h>
+#include "trackball.hpp"
 
 #include <cstdint>
 #include <cmath>
 #include <limits>
 #include <array>
 
-#include "trackball.hpp"
-#include "ratemeter.hpp"
-#include "glider.hpp"
-#include "math.hpp"
+#include "lib/ratemeter.hpp"
+#include "lib/glider.hpp"
+#include "lib/math.hpp"
+
+#include <Arduino.h>
 
 #define LEFT PC8
 #define UP PC9
@@ -30,13 +31,15 @@ static const int8_t WHEEL_DENOM = 2;
 static int8_t wheelBuffer;
 
 static float rateToVelocityCurve(float input) {
-  return std::pow(std::abs(input) / 50, 1.5);
+  return std::pow(abs(input) / 50, 1.5);
 }
 
 template<Axis AXIS, int8_t Direction>
 static void interrupt() {
+  const auto now = millis();
+
   distances[AXIS] += Direction;
-  rateMeter[AXIS].onInterrupt();
+  rateMeter[AXIS].onInterrupt(now);
   glider[AXIS].setDirection(Direction);
 
   const auto rx = rateMeter[AXIS_X].rate();

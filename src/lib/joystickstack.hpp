@@ -1,6 +1,8 @@
 #ifndef JOYSTICKSTACK_HPP
 #define JOYSTICKSTACK_HPP
 
+#include <cstdint>
+
 class JoystickStack {
 public:
   JoystickStack();

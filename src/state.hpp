@@ -1,14 +1,9 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
-#include <bitset>
-#include <array>
-#include <USBComposite.h>
+#include <cstdint>
 
-#include "key.hpp"
-#include "keyset.hpp"
-#include "debouncer.hpp"
-#include "rollover.hpp"
+#include "lib/debouncer.hpp"
 
 enum class TrackballMode : uint8_t {
   Wheel,

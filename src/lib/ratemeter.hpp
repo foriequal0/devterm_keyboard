@@ -8,7 +8,7 @@
 class RateMeter {
 public:
   RateMeter();
-  void onInterrupt();
+  void onInterrupt(uint32_t now);
   void tick(millis_t delta);
   void expire();
 

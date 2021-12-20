@@ -4,6 +4,8 @@
 #include <array>
 #include <bitset>
 
+#include "key.hpp"
+
 template<size_t N>
 class Rollover {
   public:

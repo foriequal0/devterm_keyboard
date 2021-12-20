@@ -2,8 +2,9 @@
 #define MATH_HPP
 
 #include <cstdint>
-#include <limits>
 #include <cmath>
+
+#include <limits>
 
 uint32_t getDelta(uint32_t prev, uint32_t now);
 uint32_t getDelta(uint32_t prev, uint32_t now, uint32_t max);
@@ -21,12 +22,12 @@ T sign(T value) {
 
 template<typename T, typename U>
 T clamp(U value) {
-  if (value >= std::numeric_limits<T>().max()) {
-    return std::numeric_limits<T>().max();
+  if (value >= std::numeric_limits<T>::max()) {
+    return std::numeric_limits<T>::max();
   }
 
-  if (value <= std::numeric_limits<T>().min()) {
-    return std::numeric_limits<T>().min();
+  if (value <= std::numeric_limits<T>::min()) {
+    return std::numeric_limits<T>::min();
   }
 
   return value;

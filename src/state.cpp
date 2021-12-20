@@ -1,7 +1,3 @@
-#include <cassert>
-#include <algorithm>
-#include <limits>
-
 #include "state.hpp"
 
 State::State()

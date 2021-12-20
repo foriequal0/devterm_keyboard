@@ -1,7 +1,6 @@
-#include <Arduino.h>
-#include <cstddef>
-
 #include "key.hpp"
+
+#include <cassert>
 
 MatrixKey::MatrixKey(uint8_t row, uint8_t col)
   : row(row),

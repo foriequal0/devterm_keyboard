@@ -1,15 +1,14 @@
-#include <Arduino.h>
+#include "ratemeter.hpp"
+
 #include <cstdint>
 
-#include "ratemeter.hpp"
 #include "math.hpp"
 
 RateMeter::RateMeter()
 : lastTime(0)
 {}
 
-void RateMeter::onInterrupt() {
-  const auto now = millis();
+void RateMeter::onInterrupt(uint32_t now) {
   if (cutoff.get()) {
     averageDelta = CUTOFF_MS;
   } else {

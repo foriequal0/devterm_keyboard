@@ -1,6 +1,8 @@
 #ifndef DEVICE_HPP
 #define DEVICE_HPP
 
+#include <cstdint>
+
 #include <USBComposite.h>
 
 class Device {

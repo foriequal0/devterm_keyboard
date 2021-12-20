@@ -1,10 +1,13 @@
-#include <Arduino.h>
-
 #include "keyboard.hpp"
-#include "key.hpp"
+
+#include "lib/key.hpp"
+#include "lib/keyset.hpp"
+#include "lib/rollover.hpp"
+#include "lib/joystickstack.hpp"
+
 #include "keymap.hpp"
-#include "rollover.hpp"
-#include "joystickstack.hpp"
+
+#include <Arduino.h>
 
 static const uint8_t ROWS[MatrixKey::ROW_NUM] = { PA0, PA1, PA2, PA3, PA4, PA5, PA6, PA7 };
 static const uint8_t COLS[MatrixKey::COL_NUM] = { PC0, PC1, PC2, PC3, PC4, PC5, PC6, PC7 };

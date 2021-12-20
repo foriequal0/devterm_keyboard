@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-#include "key.hpp"
+#include "lib/key.hpp"
 
 struct KeyCode {
   enum class Type : uint8_t {

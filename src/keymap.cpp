@@ -1,5 +1,8 @@
-#include <USBComposite.h>
 #include "keymap.hpp"
+
+#include <cstddef>
+
+#include <USBComposite.h>
 
 struct KeyMap {
   KeyCode matrix[MatrixKey::ROW_NUM][MatrixKey::COL_NUM];

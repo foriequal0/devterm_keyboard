@@ -1,10 +1,10 @@
 #include <USBComposite.h>
 
-#include "device.hpp"
-#include "state.hpp"
-#include "keyboard.hpp"
-#include "trackball.hpp"
-#include "tickwaiter.hpp"
+#include "src/device.hpp"
+#include "src/state.hpp"
+#include "src/keyboard.hpp"
+#include "src/trackball.hpp"
+#include "src/tickwaiter.hpp"
 
 static Device device;
 static State state;

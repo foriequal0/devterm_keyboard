@@ -2,7 +2,7 @@
 #define KEY_HPP
 
 #include <cstdint>
-#include <cassert>
+#include <cstddef>
 
 struct MatrixKey
 {

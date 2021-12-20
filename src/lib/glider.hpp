@@ -2,12 +2,13 @@
 #define GLIDER_HPP
 
 #include <cstdint>
+
 #include "debouncer.hpp"
 
 class Glider {
 public:
   Glider();
-  void setDirection(int8_t);
+  void setDirection(int8_t direction);
   void update(float velocity, uint16_t sustain);
   void updateSpeed(float velocity);
   void stop();

@@ -2,7 +2,10 @@
 #define TICKWAITER_HPP
 
 #include <cstdint>
-#include "math.hpp"
+
+#include "lib/math.hpp"
+
+#include <Arduino.h>
 
 template<uint32_t TargetInterval>
 class TickWaiter {

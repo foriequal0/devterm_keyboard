@@ -1,8 +1,6 @@
-
-#include <cstdint>
-#include <cassert>
-
 #include "joystickstack.hpp"
+
+#include <cassert>
 
 static const uint8_t IDLE = 0b00;
 static const uint8_t A  = 0b01;
