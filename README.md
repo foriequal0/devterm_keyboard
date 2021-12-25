@@ -11,7 +11,7 @@
     * Board: GENERIC STM32F103R series
     * Variant: STM32F103R8
     * Upload Method: STM32duino bootloader
-    * CPU Speed: 72Mhz
+    * CPU Speed: 48Mhz
 
 3. Verify & Upload
 
